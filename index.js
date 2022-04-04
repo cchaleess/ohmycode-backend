@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import conectarDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import todoRoutes from './routes/todoRoutes.js';
+import cors from 'cors';
+
 
 const app = express();
 app.use(express.json()); //Habilita el uso de JSON en las peticiones
@@ -10,6 +12,22 @@ app.use(express.json()); //Habilita el uso de JSON en las peticiones
 dotenv.config();
 
 conectarDB();
+
+//Habilitar Cors
+const whiteList = ['http://localhost:3000', 'http://localhost:3001'];
+ const corsOptions = {
+    origin: function (origin, callback) {
+        if (whiteList.includes(origin)) {
+            // permitir el acceso
+            callback(null, true);
+        } else {
+           // no permitir el acceso
+           callback(new Error('Not allowed by CORS'));
+            
+        }
+    }
+}
+ app.use(cors(corsOptions)); 
 
 //Routing
 app.use('/api/users', userRoutes);

@@ -70,10 +70,25 @@ const deleteTodo = (req, res) => {
     }
     );
 }
+//Obtener todo por id de usuario
+const getTodoById = (req, res) => {
+    Todo.find({ user: req.params.id })
+        .populate("user") //join de usuario
+        .exec((err, todo) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json(todo);
+        }
+    );
+}
 
 export {
     addTodo,
     getTodos,
     getTodosPagination,
-    deleteTodo
+    deleteTodo,
+    getTodoById
 }

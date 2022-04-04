@@ -1,5 +1,5 @@
 import express from "express";
-import {addTodo, getTodos, getTodosPagination, deleteTodo} from "../controllers/todoController.js";
+import {addTodo, getTodos, getTodosPagination, deleteTodo,getTodoById } from "../controllers/todoController.js";
 import jsonwebtoken from "jsonwebtoken";
 import Todo from "../models/Todo.js";
 
@@ -7,6 +7,8 @@ const router = express.Router();
 
 //Envio de todos
 router.post("/", addTodo);
+//Obtener todo de un usuario
+router.get("/:id", getTodoById);
 //Tareas con los datos de usuario
 router.get("/", getTodos);
 //Tareas con paginacion
