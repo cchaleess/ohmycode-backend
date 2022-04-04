@@ -6,7 +6,7 @@ const generarJWT = (usuario) => {
         name: usuario.name,
         username: usuario.username
     }, process.env.JWT_SECRET, {
-        expiresIn: "1m"
+        expiresIn: "1h"
     });
     return token;
 }
