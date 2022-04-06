@@ -18,7 +18,7 @@ const whiteList = ["http://localhost:3000", "http://localhost:3001"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whiteList.includes(origin)) {
-        callback(null, true);
+      callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }

@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     
     name: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
@@ -17,10 +17,14 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     address : {
-        street: { type: String, required: true },
-        city: { type: String, required: true },
-        zip: { type: String, required: true },
-        country: { type: String, required: true }
+        street: { type: String,         required: false
+        },
+        city: { type: String,         required: false
+        },
+        zip: { type: String,         required: false
+        },
+        country: { type: String,         required: false
+        }
     },    
     token : {
         type: String,

@@ -29,6 +29,12 @@ const autenticar = async (req, res) => {
         error: "Usuario no encontrado",
       });
     }
+    const correctPassword = await user.verifyPassword(password);
+    if (!correctPassword) {
+      return res.status(400).json({
+        error: "Contraseña incorrecta",
+      });
+    }
 
     if (await user.verifyPassword(password)) {
       res.json({
